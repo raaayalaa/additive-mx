@@ -1,0 +1,50 @@
+﻿ADDITIVE — Sitio web (additive.mx)
+==================================
+
+CONTENIDO DE ESTA CARPETA
+- index.html .......... Página principal (todo el sitio en un solo archivo)
+- assets/ ............. Estilos, JavaScript, tipografía, imágenes y logos
+- robots.txt, sitemap.xml, site.webmanifest
+                        Archivos de ayuda para buscadores (Google, etc.)
+- INICIAR-SITIO.bat ... Vista previa local en tu PC (doble clic)
+
+
+VER EL SITIO EN TU COMPUTADORA
+- Doble clic en  INICIAR-SITIO.bat
+- Se abrirá el navegador en  http://localhost:8080/
+- Para detenerlo, cierra la ventana negra.
+- Requiere tener instalado Python o Node.js. Si no tienes ninguno,
+  puedes abrir index.html con doble clic: el sitio se ve igual, pero la
+  tipografía Montserrat se reemplaza por una fuente del sistema.
+
+
+PUBLICAR EN INTERNET (additive.mx)
+1. Sube TODO el contenido de esta carpeta a la raíz del hosting
+   (public_html / www / htdocs). index.html debe quedar en la raíz.
+2. Activa HTTPS (certificado SSL).
+3. No necesita base de datos ni PHP: es un sitio estático.
+
+
+PENDIENTES (2 acciones importantes)
+1) FORMULARIO DE COTIZACIÓN
+   Hoy, al enviar el formulario se abre el correo del cliente con los
+   datos escritos, pero SIN archivos adjuntos (el correo por sí solo no
+   los puede llevar).
+   Para recibir los archivos directamente:
+     - Crea una cuenta gratis en https://formspree.io  (o Web3Forms)
+     - Copia la URL del formulario que te den.
+     - Abre index.html con el Bloc de notas, busca:  data-endpoint=""
+     - Pega la URL entre las comillas, guarda y vuelve a subir el archivo.
+2) REDES SOCIALES
+   Los iconos de LinkedIn / Facebook / Instagram / YouTube al pie de la
+   página todavía no tienen enlace. Reemplaza  href="#"  por tus URLs.
+
+   (Ambos cambios se hacen en index.html, buscando el texto indicado.)
+
+
+CONTACTO YA CONFIGURADO
+- Diego Ayala — Gerente de Operaciones
+- +52 595 104 8838
+- raaayala@gmail.com
+- Querétaro, México
+- WhatsApp: https://wa.me/525951048838

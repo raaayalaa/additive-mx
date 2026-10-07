@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 780" role="img" aria-label="Cobertura industrial Queretaro y Bajio">
+<defs><pattern id="rg" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M48 0H0V48" fill="none" stroke="#E5E7EB" stroke-width="1"/></pattern><radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#007BFF" stop-opacity=".28"/><stop offset="1" stop-color="#007BFF" stop-opacity="0"/></radialGradient></defs>
+<rect width="1200" height="780" fill="#F7F8FA"/>
+<rect width="1200" height="780" fill="url(#rg)"/>
+<polygon points="300,300 470,250 690,340 585,430 440,590 800,610" fill="#007BFF" fill-opacity="0.045" stroke="#007BFF" stroke-opacity="0.25" stroke-width="1.5" stroke-dasharray="6 8"/>
+<line x1="300" y1="300" x2="470" y2="250" stroke="#007BFF" stroke-opacity="0.35" stroke-width="1.4"/>
+<line x1="470" y1="250" x2="585" y2="430" stroke="#007BFF" stroke-opacity="0.35" stroke-width="1.4"/>
+<line x1="470" y1="250" x2="690" y2="340" stroke="#007BFF" stroke-opacity="0.35" stroke-width="1.4"/>
+<line x1="585" y1="430" x2="440" y2="590" stroke="#007BFF" stroke-opacity="0.35" stroke-width="1.4"/>
+<line x1="585" y1="430" x2="690" y2="340" stroke="#007BFF" stroke-opacity="0.35" stroke-width="1.4"/>
+<line x1="585" y1="430" x2="800" y2="610" stroke="#007BFF" stroke-opacity="0.35" stroke-width="1.4"/>
+<line x1="440" y1="590" x2="800" y2="610" stroke="#007BFF" stroke-opacity="0.35" stroke-width="1.4"/>
+<line x1="690" y1="340" x2="800" y2="610" stroke="#007BFF" stroke-opacity="0.35" stroke-width="1.4"/>
+<circle cx="300" cy="300" r="9" fill="#1F2937"/>
+<circle cx="300" cy="300" r="4" fill="#fff"/>
+<text x="300" y="266" font-family="Montserrat, Arial, sans-serif" font-size="21" font-weight="600" fill="#1F2937" text-anchor="middle">Guanajuato</text>
+<circle cx="470" cy="250" r="9" fill="#1F2937"/>
+<circle cx="470" cy="250" r="4" fill="#fff"/>
+<text x="470" y="216" font-family="Montserrat, Arial, sans-serif" font-size="21" font-weight="600" fill="#1F2937" text-anchor="middle">San Juan del Río</text>
+<circle cx="690" cy="340" r="9" fill="#1F2937"/>
+<circle cx="690" cy="340" r="4" fill="#fff"/>
+<text x="690" y="306" font-family="Montserrat, Arial, sans-serif" font-size="21" font-weight="600" fill="#1F2937" text-anchor="middle">El Marqués</text>
+<circle cx="585" cy="430" r="58" fill="url(#glow)"/>
+<circle cx="585" cy="430" r="26" fill="none" stroke="#007BFF" stroke-opacity="0.35" stroke-width="1.4"/>
+<circle cx="585" cy="430" r="40" fill="none" stroke="#007BFF" stroke-opacity="0.18" stroke-width="1.2"/>
+<circle cx="585" cy="430" r="9" fill="#007BFF"/>
+<circle cx="585" cy="430" r="4" fill="#fff"/>
+<text x="585" y="396" font-family="Montserrat, Arial, sans-serif" font-size="24" font-weight="800" fill="#007BFF" text-anchor="middle">Querétaro</text>
+<circle cx="440" cy="590" r="9" fill="#1F2937"/>
+<circle cx="440" cy="590" r="4" fill="#fff"/>
+<text x="440" y="556" font-family="Montserrat, Arial, sans-serif" font-size="21" font-weight="600" fill="#1F2937" text-anchor="middle">Celaya</text>
+<circle cx="800" cy="610" r="9" fill="#1F2937"/>
+<circle cx="800" cy="610" r="4" fill="#fff"/>
+<text x="800" y="576" font-family="Montserrat, Arial, sans-serif" font-size="21" font-weight="600" fill="#1F2937" text-anchor="middle">Bajío</text>
+<g stroke="#007BFF" stroke-width="1.2" opacity="0.5">
+<path d="M60 60h30M60 60v30"/>
+<path d="M1140 60h-30M1140 60v30"/>
+<path d="M60 720h30M60 720v-30"/>
+<path d="M1140 720h-30M1140 720v-30"/>
+</g>
+<g transform="translate(70,650)">
+<rect width="360" height="64" rx="4" fill="#fff" stroke="#E5E7EB"/>
+<rect width="4" height="64" fill="#007BFF"/>
+<text x="24" y="28" font-family="Montserrat, Arial, sans-serif" font-size="15" font-weight="700" letter-spacing="2" fill="#007BFF">COBERTURA INDUSTRIAL</text>
+<text x="24" y="50" font-family="Montserrat, Arial, sans-serif" font-size="15" font-weight="500" fill="#6B7280">Querétaro · Bajío · México</text>
+</g>
+</svg>

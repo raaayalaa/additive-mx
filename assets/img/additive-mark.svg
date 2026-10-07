@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="380 80 790 560" role="img" aria-label="ADDITIVE">
+  <defs>
+  <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#16b8ff"/>
+      <stop offset="0.48" stop-color="#008eea"/>
+      <stop offset="1" stop-color="#0057a8"/>
+    </linearGradient>
+    <linearGradient id="dark" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#05090d"/>
+      <stop offset="0.5" stop-color="#202a32"/>
+      <stop offset="1" stop-color="#070b0f"/>
+    </linearGradient>
+    <linearGradient id="blue2" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#0079d8"/>
+      <stop offset="0.55" stop-color="#18b9ff"/>
+      <stop offset="1" stop-color="#006cc6"/>
+    </linearGradient>
+  </defs>
+    <path d="M575 302 L673 120 Q679 110 692 110 L829 110 Q846 111 855 125 L1139 614 L966 614 L793 307 Z" fill="url(#dark)"/>
+    <path d="M673 120 Q679 110 692 110 L829 110 Q846 111 855 125 L861 136 Q850 121 832 121 L699 121 Q687 121 680 132 L584 302 L575 302 Z" fill="#8b97a1" opacity=".35"/>
+    <path d="M409 614 L552 369 Q568 342 598 338 L760 338 Q788 339 803 365 L879 521 L719 521 L680 449 L586 614 Z" fill="url(#blue)"/>
+    <path d="M586 614 L680 449 L719 521 L672 598 Q662 614 638 614 Z" fill="url(#dark)" opacity=".9"/>
+    <path d="M552 369 Q568 342 598 338 L760 338 Q788 339 803 365 L814 388 Q799 365 774 365 L608 365 Q581 369 566 393 L438 614 L409 614 Z" fill="#38c8ff" opacity=".22"/>
+</svg>

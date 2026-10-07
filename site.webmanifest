@@ -1,0 +1,17 @@
+{
+  "name": "ADDITIVE — Manufactura Aditiva, Escaneo 3D e Ingeniería",
+  "short_name": "ADDITIVE",
+  "description": "Escaneo 3D, impresión 3D, ingeniería y metrología para la industria. Querétaro, México.",
+  "lang": "es-MX",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#FFFFFF",
+  "theme_color": "#1F2937",
+  "icons": [
+    { "src": "assets/img/favicon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "assets/img/favicon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "assets/img/additive-mark.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}
