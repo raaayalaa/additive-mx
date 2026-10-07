@@ -9,6 +9,96 @@
   var doc = document;
   var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  /* ---------- i18n UI messages ----------------------------------------- */
+  var LANG = String(doc.documentElement.lang || "es-MX").slice(0, 2).toLowerCase();
+  var MSG = {
+    es: {
+      fileMax: "Máximo {n} archivos.",
+      fileType: "Formato no permitido: {name}",
+      fileSize: "{name} excede 10 MB.",
+      fileTotal: "El total de archivos no debe superar 10 MB.",
+      removeFile: "Quitar archivo",
+      reqName: "Escribe tu nombre.",
+      reqEmail: "Escribe tu correo.",
+      reqEmailInvalid: "Correo no válido.",
+      reqService: "Selecciona un servicio.",
+      reqDescription: "Describe brevemente tu requerimiento (mín. 10 caracteres).",
+      checkFields: "Revisa los campos marcados antes de enviar.",
+      sending: "Enviando…",
+      okTitle: "<b>Gracias{name}.</b> Recibimos tu solicitud. Te responderemos a la brevedad con la estrategia de fabricación y una cotización.",
+      mailTitle: "<b>Abriendo tu cliente de correo…</b> Si no se abre, escríbenos a <a href='mailto:raaayala@gmail.com'>raaayala@gmail.com</a> con tu descripción. Recuerda <b>adjuntar tus archivos</b> (STEP, STL, PDF, etc.).",
+      errSend: "No pudimos enviar el formulario por el canal directo. Abriendo tu correo…",
+      subjectPrefix: "Solicitud de cotización — ",
+      lName: "Nombre",
+      lCompany: "Empresa",
+      lEmail: "Correo",
+      lPhone: "Teléfono",
+      lService: "Servicio",
+      lMaterial: "Material",
+      lQuantity: "Cantidad",
+      lDate: "Fecha requerida",
+      lDescription: "Descripción"
+    },
+    en: {
+      fileMax: "Maximum {n} files.",
+      fileType: "Not an allowed format: {name}",
+      fileSize: "{name} exceeds 10 MB.",
+      fileTotal: "The total file size must not exceed 10 MB.",
+      removeFile: "Remove file",
+      reqName: "Enter your name.",
+      reqEmail: "Enter your email.",
+      reqEmailInvalid: "Invalid email.",
+      reqService: "Select a service.",
+      reqDescription: "Briefly describe your requirement (min. 10 characters).",
+      checkFields: "Review the highlighted fields before sending.",
+      sending: "Sending…",
+      okTitle: "<b>Thank you{name}.</b> We received your request. We will reply shortly with the manufacturing strategy and a quote.",
+      mailTitle: "<b>Opening your email client…</b> If it does not open, write to <a href='mailto:raaayala@gmail.com'>raaayala@gmail.com</a> with your description. Remember to <b>attach your files</b> (STEP, STL, PDF, etc.).",
+      errSend: "We could not send the form through the direct channel. Opening your email…",
+      subjectPrefix: "Quote request — ",
+      lName: "Name",
+      lCompany: "Company",
+      lEmail: "Email",
+      lPhone: "Phone",
+      lService: "Service",
+      lMaterial: "Material",
+      lQuantity: "Quantity",
+      lDate: "Required date",
+      lDescription: "Description"
+    },
+    de: {
+      fileMax: "Maximal {n} Dateien.",
+      fileType: "Nicht erlaubtes Format: {name}",
+      fileSize: "{name} überschreitet 10 MB.",
+      fileTotal: "Die Gesamtgröße darf 10 MB nicht überschreiten.",
+      removeFile: "Datei entfernen",
+      reqName: "Bitte geben Sie Ihren Namen ein.",
+      reqEmail: "Bitte geben Sie Ihre E-Mail ein.",
+      reqEmailInvalid: "Ungültige E-Mail.",
+      reqService: "Bitte wählen Sie eine Leistung.",
+      reqDescription: "Beschreiben Sie kurz Ihre Anforderung (mind. 10 Zeichen).",
+      checkFields: "Überprüfen Sie die markierten Felder vor dem Senden.",
+      sending: "Wird gesendet…",
+      okTitle: "<b>Vielen Dank{name}.</b> Wir haben Ihre Anfrage erhalten. Wir melden uns schnellstmöglich mit der Fertigungsstrategie und einem Angebot.",
+      mailTitle: "<b>Ihr E-Mail-Programm wird geöffnet…</b> Falls es nicht geöffnet wird, schreiben Sie an <a href='mailto:raaayala@gmail.com'>raaayala@gmail.com</a> mit Ihrer Beschreibung. Denken Sie daran, <b>Ihre Dateien anzuhängen</b> (STEP, STL, PDF, usw.).",
+      errSend: "Das Formular konnte nicht über den direkten Kanal gesendet werden. Ihr E-Mail-Programm wird geöffnet…",
+      subjectPrefix: "Angebotsanfrage — ",
+      lName: "Name",
+      lCompany: "Unternehmen",
+      lEmail: "E-Mail",
+      lPhone: "Telefon",
+      lService: "Leistung",
+      lMaterial: "Material",
+      lQuantity: "Menge",
+      lDate: "Gewünschtes Datum",
+      lDescription: "Beschreibung"
+    }
+  };
+  function t(key) {
+    var m = (MSG[LANG] || MSG.es)[key];
+    return m === undefined ? key : m;
+  }
+
   /* ---------- Header: compact on scroll --------------------------------- */
   var header = doc.getElementById("header");
   function onScroll() {
@@ -124,7 +214,8 @@
   }
 
   /* ---------- File upload (quote form) ---------------------------------- */
-  var FILE_MAX = 15 * 1024 * 1024; // 15 MB
+  var FILE_MAX = 10 * 1024 * 1024; // 10 MB por archivo (límite del proveedor de correo)
+  var TOTAL_MAX = 10 * 1024 * 1024; // 10 MB en total por envío (límite duro de FormSubmit)
   var FILE_MAX_COUNT = 5;
   var ALLOWED = ["step", "stp", "stl", "obj", "dxf", "pdf", "jpg", "jpeg", "png"];
   var input = doc.getElementById("q-archivos");
@@ -149,7 +240,7 @@
       row.className = "file-row";
       var icon = '<svg aria-hidden="true"><use href="#i-file"/></svg>';
       row.innerHTML = icon + '<span class="name"></span><span class="size"></span>' +
-        '<button type="button" aria-label="Quitar archivo"><svg aria-hidden="true"><use href="#i-x"/></svg></button>';
+        '<button type="button" aria-label="' + t("removeFile") + '"><svg aria-hidden="true"><use href="#i-x"/></svg></button>';
       row.querySelector(".name").textContent = f.name;
       row.querySelector(".size").textContent = humanSize(f.size);
       row.querySelector("button").addEventListener("click", function () {
@@ -165,15 +256,20 @@
     if (errEl) errEl.textContent = "";
     incoming.forEach(function (f) {
       if (selected.length >= FILE_MAX_COUNT) {
-        if (errEl) errEl.textContent = "Máximo " + FILE_MAX_COUNT + " archivos.";
+        if (errEl) errEl.textContent = t("fileMax").replace("{n}", FILE_MAX_COUNT);
         return;
       }
       if (ALLOWED.indexOf(ext(f.name)) === -1) {
-        if (errEl) errEl.textContent = "Formato no permitido: " + f.name;
+        if (errEl) errEl.textContent = t("fileType").replace("{name}", f.name);
         return;
       }
       if (f.size > FILE_MAX) {
-        if (errEl) errEl.textContent = f.name + " excede 15 MB.";
+        if (errEl) errEl.textContent = t("fileSize").replace("{name}", f.name);
+        return;
+      }
+      var used = selected.reduce(function (s, x) { return s + x.size; }, 0);
+      if (used + f.size > TOTAL_MAX) {
+        if (errEl) errEl.textContent = t("fileTotal");
         return;
       }
       selected.push(f);
@@ -231,12 +327,12 @@
     setError("q-servicio", "");
     setError("q-descripcion", "");
 
-    if (!nombre.value.trim()) { setError("q-nombre", "Escribe tu nombre."); ok = false; }
-    if (!correo.value.trim()) { setError("q-correo", "Escribe tu correo."); ok = false; }
-    else if (!EMAIL_RE.test(correo.value.trim())) { setError("q-correo", "Correo no válido."); ok = false; }
-    if (!servicio.value) { setError("q-servicio", "Selecciona un servicio."); ok = false; }
+    if (!nombre.value.trim()) { setError("q-nombre", t("reqName")); ok = false; }
+    if (!correo.value.trim()) { setError("q-correo", t("reqEmail")); ok = false; }
+    else if (!EMAIL_RE.test(correo.value.trim())) { setError("q-correo", t("reqEmailInvalid")); ok = false; }
+    if (!servicio.value) { setError("q-servicio", t("reqService")); ok = false; }
     if (!desc.value.trim() || desc.value.trim().length < 10) {
-      setError("q-descripcion", "Describe brevemente tu requerimiento (mín. 10 caracteres).");
+      setError("q-descripcion", t("reqDescription"));
       ok = false;
     }
     return ok;
@@ -245,7 +341,7 @@
     var data = new FormData();
     data.append("nombre", (doc.getElementById("q-nombre") || {}).value || "");
     data.append("empresa", (doc.getElementById("q-empresa") || {}).value || "");
-    data.append("correo", (doc.getElementById("q-correo") || {}).value || "");
+    data.append("email", (doc.getElementById("q-correo") || {}).value || "");
     data.append("telefono", (doc.getElementById("q-telefono") || {}).value || "");
     data.append("servicio", (doc.getElementById("q-servicio") || {}).value || "");
     data.append("material", (doc.getElementById("q-material") || {}).value || "");
@@ -257,18 +353,18 @@
   }
   function mailtoFallback() {
     var to = "raaayala@gmail.com";
-    var subject = "Solicitud de cotización — " + ((doc.getElementById("q-servicio") || {}).value || "ADDITIVE");
+    var subject = t("subjectPrefix") + ((doc.getElementById("q-servicio") || {}).value || "ADDITIVE");
     var L = [
-      "Nombre: " + ((doc.getElementById("q-nombre") || {}).value || ""),
-      "Empresa: " + ((doc.getElementById("q-empresa") || {}).value || ""),
-      "Correo: " + ((doc.getElementById("q-correo") || {}).value || ""),
-      "Teléfono: " + ((doc.getElementById("q-telefono") || {}).value || ""),
-      "Servicio: " + ((doc.getElementById("q-servicio") || {}).value || ""),
-      "Material: " + ((doc.getElementById("q-material") || {}).value || ""),
-      "Cantidad: " + ((doc.getElementById("q-cantidad") || {}).value || ""),
-      "Fecha requerida: " + ((doc.getElementById("q-fecha") || {}).value || ""),
+      t("lName") + ": " + ((doc.getElementById("q-nombre") || {}).value || ""),
+      t("lCompany") + ": " + ((doc.getElementById("q-empresa") || {}).value || ""),
+      t("lEmail") + ": " + ((doc.getElementById("q-correo") || {}).value || ""),
+      t("lPhone") + ": " + ((doc.getElementById("q-telefono") || {}).value || ""),
+      t("lService") + ": " + ((doc.getElementById("q-servicio") || {}).value || ""),
+      t("lMaterial") + ": " + ((doc.getElementById("q-material") || {}).value || ""),
+      t("lQuantity") + ": " + ((doc.getElementById("q-cantidad") || {}).value || ""),
+      t("lDate") + ": " + ((doc.getElementById("q-fecha") || {}).value || ""),
       "",
-      "Descripción:",
+      t("lDescription") + ":",
       ((doc.getElementById("q-descripcion") || {}).value || "")
     ];
     return "mailto:" + to + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(L.join("\n"));
@@ -277,8 +373,8 @@
   if (form) {
     var fecha = doc.getElementById("q-fecha");
     if (fecha) {
-      var t = new Date();
-      var iso = new Date(t.getTime() - t.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+      var now = new Date();
+      var iso = new Date(now.getTime() - now.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
       fecha.min = iso;
     }
 
@@ -290,7 +386,7 @@
       if (hp && hp.value) return;
 
       if (!validate()) {
-        showStatus("is-err", "Revisa los campos marcados antes de enviar.");
+        showStatus("is-err", t("checkFields"));
         var firstErr = form.querySelector(".has-error input, .has-error select, .has-error textarea");
         if (firstErr) firstErr.focus();
         return;
@@ -299,12 +395,10 @@
       var endpoint = (form.getAttribute("data-endpoint") || "").trim();
       var btn = form.querySelector('button[type="submit"]');
       var original = btn ? btn.innerHTML : "";
-      if (btn) { btn.disabled = true; btn.textContent = "Enviando…"; }
+      if (btn) { btn.disabled = true; btn.textContent = t("sending"); }
 
       function doneOk(name) {
-        showStatus("is-ok",
-          "<b>Gracias" + (name ? ", " + name : "") + ".</b> Recibimos tu solicitud. " +
-          "Te responderemos a la brevedad con la estrategia de fabricación y una cotización.");
+        showStatus("is-ok", t("okTitle").replace("{name}", name ? ", " + name : ""));
         form.reset();
         selected = [];
         renderList();
@@ -312,10 +406,7 @@
       }
       function doneMail() {
         window.location.href = mailtoFallback();
-        showStatus("is-ok",
-          "<b>Abriendo tu cliente de correo…</b> Si no se abre, escríbenos a " +
-          "<a href='mailto:raaayala@gmail.com'>raaayala@gmail.com</a> " +
-          "con tu descripción. Recuerda <b>adjuntar tus archivos</b> (STEP, STL, PDF, etc.).");
+        showStatus("is-ok", t("mailTitle"));
         if (btn) { btn.disabled = false; btn.innerHTML = original; }
       }
 
@@ -326,9 +417,12 @@
           if (!res.ok) throw new Error("HTTP " + res.status);
           return res.json().catch(function () { return {}; });
         })
-        .then(function () { doneOk(((doc.getElementById("q-nombre") || {}).value || "").split(" ")[0]); })
+        .then(function (json) {
+          if (json && String(json.success) === "false") throw new Error(json.message || "rechazado");
+          doneOk(((doc.getElementById("q-nombre") || {}).value || "").split(" ")[0]);
+        })
         .catch(function () {
-          showStatus("is-err", "No pudimos enviar el formulario por el canal directo. Abriendo tu correo…");
+          showStatus("is-err", t("errSend"));
           doneMail();
         });
     });

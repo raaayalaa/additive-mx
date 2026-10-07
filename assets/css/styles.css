@@ -253,6 +253,15 @@ body.menu-open .drawer { opacity: 1; visibility: visible; pointer-events: auto; 
 .drawer__meta { color: var(--muted); font-size: .9rem; }
 .drawer__meta a { color: var(--ink); font-weight: 600; }
 
+/* Language switcher */
+.lang { display: none; align-items: center; gap: 2px; padding: 2px; margin-left: 6px; border: 1px solid var(--line); border-radius: 999px; }
+.lang__opt { display: inline-flex; align-items: center; justify-content: center; min-width: 34px; padding: 5px 8px; border-radius: 999px; font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); transition: color .2s var(--ease), background .2s var(--ease); }
+.lang__opt:hover { color: var(--blue); }
+.lang__opt.is-active { background: var(--blue); color: #fff; }
+.lang--drawer { display: inline-flex; align-self: flex-start; margin-top: 18px; }
+.lang--drawer .lang__opt { padding: 8px 14px; }
+@media (min-width: 1024px) { .lang { display: inline-flex; } }
+
 /* ---------- Hero --------------------------------------------------------- */
 .hero { position: relative; overflow: hidden; background: #fff; }
 .hero::before {
@@ -309,7 +318,10 @@ body.menu-open .drawer { opacity: 1; visibility: visible; pointer-events: auto; 
 .capbar__item {
   display: flex; align-items: center; gap: 14px; padding: 22px 20px;
   border-bottom: 1px solid var(--line); position: relative; transition: background .25s var(--ease);
+  min-width: 0;
 }
+.capbar__item > span { min-width: 0; }
+.capbar__item b, .capbar__item small { overflow-wrap: break-word; }
 .capbar__item:hover { background: var(--bg-soft); }
 .capbar__item svg { width: 30px; height: 30px; color: var(--carbon); flex: none; transition: color .25s var(--ease); }
 .capbar__item:hover svg { color: var(--blue); }
@@ -321,6 +333,15 @@ body.menu-open .drawer { opacity: 1; visibility: visible; pointer-events: auto; 
 .grid--2 { grid-template-columns: 1fr; }
 .grid--3 { grid-template-columns: 1fr; }
 .grid--4 { grid-template-columns: 1fr; }
+/* Long words (e.g. German compounds) must wrap inside grid/flex children
+   instead of forcing horizontal overflow. */
+.grid > *,
+.adv__item,
+.pillar,
+.step { min-width: 0; }
+.grid h2, .grid h3, .grid h4, .grid p,
+.adv__item h3, .adv__item p,
+.pillar h3, .pillar p { overflow-wrap: break-word; }
 
 .card {
   position: relative; background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
@@ -664,15 +685,27 @@ body.menu-open .drawer { opacity: 1; visibility: visible; pointer-events: auto; 
 }
 @media (min-width: 1024px) {
   .hero__inner { grid-template-columns: 1.02fr .98fr; align-items: center; }
-  .nav { display: flex; align-items: center; }
-  .header__cta { display: inline-flex; }
-  .burger { display: none; }
   .grid--3 { grid-template-columns: repeat(3, 1fr); }
   .footer__top { grid-template-columns: 1.7fr 1fr 1fr 1.3fr; }
 }
 @media (min-width: 1180px) {
   :root { --header-h: 82px; }
   .grid--4 { grid-template-columns: repeat(4, 1fr); }
+}
+@media (min-width: 1280px) {
+  /* Desktop navigation: burger + drawer remain below 1280px */
+  .nav { display: flex; align-items: center; }
+  .header__cta { display: inline-flex; }
+  .burger { display: none; }
+  .nav__list { gap: 0px; }
+  .nav__link { padding: 10px 11px; font-size: .72rem; letter-spacing: .06em; }
+  .header__cta { margin-left: 10px; padding: 12px 18px; }
+}
+@media (min-width: 1280px) and (max-width: 1599px) {
+  .header__inner { gap: 12px; }
+  .nav__link { padding: 10px 7px; font-size: .69rem; letter-spacing: .03em; }
+  .header__cta { padding: 10px 12px; font-size: .78rem; min-height: 44px; }
+  .lang { margin-left: 2px; }
 }
 
 /* Services grid: 8 cards -> 2/4 columns */

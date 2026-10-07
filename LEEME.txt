@@ -2,11 +2,21 @@
 ==================================
 
 CONTENIDO DE ESTA CARPETA
-- index.html .......... Página principal (todo el sitio en un solo archivo)
+- index.html .......... Página principal (español / es-MX)
+- en.html ............. Versión en inglés
+- de.html ............. Versión en alemán
 - assets/ ............. Estilos, JavaScript, tipografía, imágenes y logos
 - robots.txt, sitemap.xml, site.webmanifest
                         Archivos de ayuda para buscadores (Google, etc.)
 - INICIAR-SITIO.bat ... Vista previa local en tu PC (doble clic)
+
+
+EN 3 IDIOMAS
+- El sitio incluye un selector ES / EN / DE en la parte superior
+  (y dentro del menú móvil). Cada idioma es una página aparte:
+  index.html (español), en.html (inglés), de.html (alemán).
+- En cada página los títulos, descripciones y datos para buscadores
+  (meta tags) ya están traducidos, así como el formulario y sus mensajes.
 
 
 VER EL SITIO EN TU COMPUTADORA
@@ -20,26 +30,26 @@ VER EL SITIO EN TU COMPUTADORA
 
 PUBLICAR EN INTERNET (additive.mx)
 1. Sube TODO el contenido de esta carpeta a la raíz del hosting
-   (public_html / www / htdocs). index.html debe quedar en la raíz.
+   (public_html / www / htdocs). index.html, en.html y de.html
+   deben quedar en la raíz.
 2. Activa HTTPS (certificado SSL).
 3. No necesita base de datos ni PHP: es un sitio estático.
 
 
-PENDIENTES (2 acciones importantes)
-1) FORMULARIO DE COTIZACIÓN
-   Hoy, al enviar el formulario se abre el correo del cliente con los
-   datos escritos, pero SIN archivos adjuntos (el correo por sí solo no
-   los puede llevar).
-   Para recibir los archivos directamente:
-     - Crea una cuenta gratis en https://formspree.io  (o Web3Forms)
-     - Copia la URL del formulario que te den.
-     - Abre index.html con el Bloc de notas, busca:  data-endpoint=""
-     - Pega la URL entre las comillas, guarda y vuelve a subir el archivo.
-2) REDES SOCIALES
+PENDIENTE (1 acción)
+1) REDES SOCIALES
    Los iconos de LinkedIn / Facebook / Instagram / YouTube al pie de la
    página todavía no tienen enlace. Reemplaza  href="#"  por tus URLs.
 
-   (Ambos cambios se hacen en index.html, buscando el texto indicado.)
+
+FORMULARIO DE COTIZACIÓN (LISTO Y ACTIVADO)
+- Envía las solicitudes, con archivos adjuntos, al correo
+  raaayala@gmail.com  (servicio FormSubmit: gratis y sin cuenta).
+- Ya quedó ACTIVADO y probado: los envíos llegan correctamente.
+- LÍMITE: los adjuntos no deben superar 10 MB en total por solicitud.
+  Para piezas muy pesadas (STEP grandes, nubes de puntos...), pega un
+  enlace de Google Drive o WeTransfer en el campo Descripción.
+- (Para cambiar de proveedor: busca  data-endpoint="  en index.html.)
 
 
 CONTACTO YA CONFIGURADO
